@@ -6,30 +6,11 @@
 
 - **NestJS**
 - **TypeScript**
-- **Prisma ORM**
-- **PostgreSQL**
 
 ### Frontend
 
 - **React**
 - **TypeScript**
-- **Redux**
-- **Electron**
-
----
-
-## Project Structure
-
-It is recommended to follow this structure for easier development and deployment:
-
-```
-/mustage-todo
-  /mustage-front          # Frontend (React + Electron)
-  /mustage-back           # Backend (NestJS + Prisma)
-  /electron-application   # Optional folder
-```
-
----
 
 ## Backend Setup
 
@@ -42,7 +23,7 @@ It is recommended to follow this structure for easier development and deployment
 2. **Navigate to the backend directory**:
 
    ```bash
-   cd mustage-back
+   cd <recipeBook-backend>
    ```
 
 3. **Install dependencies**:
@@ -51,31 +32,7 @@ It is recommended to follow this structure for easier development and deployment
    npm install
    ```
 
-4. **Create the `.env` file**:
-
-   - Copy the contents of `.env.example` to a new file `.env`.
-   - You can keep the default values or update them to match your configuration (e.g., database
-     credentials).
-
-5. **Set up PostgreSQL**:
-
-   - Make sure PostgreSQL is running.
-   - Edit the connection string in your `.env` file to include your username, password, database
-     name, and host.
-
-6. **Generate Prisma client**:
-
-   ```bash
-   npx prisma generate
-   ```
-
-7. **Push the schema to the database**:
-
-   ```bash
-   npx prisma db push
-   ```
-
-8. **Build and start the server**:
+4. **Build and start the server**:
 
    ```bash
    npm run build
@@ -99,7 +56,7 @@ It is recommended to follow this structure for easier development and deployment
 2. **Navigate to the frontend directory**:
 
    ```bash
-   cd mustage-front
+   cd <recipeBook-frontend>
    ```
 
 3. **Install dependencies**:
@@ -108,79 +65,96 @@ It is recommended to follow this structure for easier development and deployment
    npm install
    ```
 
-4. **Create the `.env` file**:
-
-   - Copy the contents of `.env.example` to `.env`.
-   - Adjust the values if needed or keep the defaults.
-
-5. **Build the frontend (optional)**:
+4. **Build the frontend**:
 
    ```bash
    npm run build
+   npm run start
    ```
 
-6. **Run the development server (optional)**:
-   ```bash
-   npm run dev
-   ```
-   - This will start the app on `http://localhost:4201/`.
 
----
-
-## Electron Application
-
-1. **To build the desktop installer**:
-
-   - For **Windows**:
-
-     ```bash
-     npm run dist:win
-     ```
-
-   - For **macOS** (must be on a Mac):
-     ```bash
-     npm run dist:mac
-     ```
-
-2. **Installer Output**:
-   - The build will create a `dist_electron` folder containing the installer.
-   - You can install the application anywhere, for example, near the frontend and backend folders.
-
-## **Тестове завдання на вакансію Junior Full Stack JavaScript Developer**
 
 ## **Загальний опис завдання:**
 
-Необхідно реалізувати настільний додаток для управління задачами, який буде використовувати API для
-взаємодії з базою даних. Додаток повинен бути адаптивним і кросплатформеним (працювати на Windows та
-Mac OS.)
+# Full-Stack JS engineer test assessment - the **Recipe book**
 
-Дедлайн: 2 дні з моменту отримання.
+**Overview**
 
-## **Вимоги до функціоналу:**
+This documentation provides detailed instructions for completing the test assessment, which involves building two small applications to provide information about recipes. The application includes a Backend (BE) built with Node.js (Nest or Express) and a Frontend (FE) built with React (Next.js is a plus).
 
-1. Отримання списку задач з бази даних через API для взаємодії з базою даних та його відображення в
-   інтерфейсі.
+### **Project Overview**
 
-2. Створення задачі: користувач повинен мати змогу створювати задачі з заголовком, описом та
-   статусом (виконана / не виконана).
+### **Backend:**
 
-3. Редагування задачі: користувач має мати змогу редагувати існуючі задачі, змінювати заголовок,
-   опис та статус.
+**Tech Stack:**
 
-4. Видалення задачі: користувач має мати змогу видаляти задачі.
+- Node.js (Nest.js or Express.js)
+- Typescript
 
-5. Фільтрація задач: користувач має мати змогу фільтрувати задачі за статусом (виконана / не
-   виконана).
+**Tasks:**
 
-6. Пошук по задачам: користувач має мати змогу виконувати пошук по задачам за заголовком або описом.
+1. **Endpoint: Get Available Recipes**
+    1. Create an API endpoint, using [Recipe API](https://www.themealdb.com/api.php)
+    2. This endpoint should support prescription filtering:
+        1. **List of All Available Recipes:** `https://www.themealdb.com/api/json/v1/1/search.php?s=`
+        2. **List of Recipes Filtered By Ingredient:** `www.themealdb.com/api/json/v1/1/filter.php?i=chicken_breast`
+        3. **List of Recipes Filtered By Country:** `www.themealdb.com/api/json/v1/1/filter.php?a=Canadian`
+        4. **List of Recipes Filtered By Category:** `www.themealdb.com/api/json/v1/1/filter.php?c=Seafood`
+2. **Endpoint: Get Recipe Info**
+    1. Create an API endpoint to retrieve detailed information about a specific recipe `https://www.themealdb.com/api/json/v1/1/lookup.php?i=52772`
 
-Збережіть готовий проект в репозиторії на GitHub і надайте детальні інструкції по його запуску в
-файлі README.md. Гарний дизайн буде плюсом.
+### **Front-end:**
 
-## **Вимоги до стеку технологій:**
+**Tech Stack:**
 
-Front-End: React.js + Electron.js.
+- React.js
+- Typescript
+- Next.js (preferred but not mandatory)
 
-Back-End: Node.js + Nest.js.
+**Tasks:**
 
-БД: PostgreSQL.
+1. **Recipe List Page**
+    1. Display title based on the applied filter
+    2. Display a list of recipes fetched from the endpoint (all  recipes by default)
+    3. Each recipes item should be clickable and navigate the user to the Recipes Info Page
+2. **Recipe Info Page**
+    1. Display detailed information about the selected recipe, including:
+        1. **Recipe image:** Displayed prominently at the top-left
+        2. **Recipe name:** Displayed at the center
+        3. **Recipe country:** Displayed under the name, should be clickable and navigate the user to list of recipes (**Recipe List Page)** filtered by country
+        4. **Recipe Instructions:** Displayed below at the center
+        5. **Recipe Ingredients:**  Displays a list of ingredients, each of which is clickable and navigate the user to a list of recipes (**Recipe List Page)** filtered by ingredient
+    2. Right sidebar:
+        1. Display the list of recipes of the current recipe category
+        2. Should be clickable and navigate the user to list of recipes filtered by category
+
+### Additional Requirements
+
+1. **Styling**:
+    1. You can use any CSS framework or custom styles to design the components.
+    2. Ensure that the UI is responsive and user-friendly.
+2. **Environment Variables**:
+    1. Create a `.env` file to store sensitive data such as API keys and base URLs.
+    2. Ensure that environment variables are loaded and used securely in the application.
+    3. Add `.env` to the repository.
+3. **Code Quality**:
+    1. Set up ESLint and Prettier to ensure consistent code formatting and quality.
+    2. Ensure that all files are properly linted and formatted before submission.
+4. **Documentation**:
+    1. Include a `README.md` file that provides instructions on how to install, run, and test the application.
+    2. Include any necessary setup steps, such as installing dependencies or configuring environment variables.
+
+### **API Documentation**
+
+- **Recipe API:** [Free Recipe API Support](https://www.themealdb.com/api.php)
+
+### **Additional Instructions**
+
+We will be testing your application locally. Please ensure the following:
+
+- **Separate Folders**: Place the frontend (FE) and backend (BE) code in separate folders 
+within the root directory. Do not create a monorepo structure.
+- **Parallel Execution**: Ensure that both the frontend and backend can be run simultaneously on different ports. The frontend should be able to communicate with the backend without any issues.
+- **Instructions for Running**: Provide clear instructions in the README.md file on how to start both the frontend and backend servers, including any necessary environment variables or configurations.
+
+By following these instructions, we will be able to test your application smoothly and verify that both parts work together as expected.
