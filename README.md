@@ -40,8 +40,7 @@
    ```
 
    - The server will start on `http://localhost:4202/` by default.
-   - Some test data will be seeded automatically.
-   - If you only see green and purple logs in the console, the server has started successfully.
+   - .env file ready to use, i add it to repository
 
 ---
 
